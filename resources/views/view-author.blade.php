@@ -1,0 +1,69 @@
+
+@extends('layouts.main')
+
+@section('content')
+
+    <section class="product-sec">
+        <div class="container">
+            <h1>معرفی {{$author->name}} </h1>
+            <div class="row">
+                <div class="col-md-6 slider-sec">
+                    <!-- main slider carousel -->
+                    <div id="myCarousel" class="carousel slide">
+                        <!-- main slider carousel items -->
+                        <div class="carousel-inner">
+                            <div class="active item carousel-item" data-slide-number="0">
+                                <img src="/images/authors/{{$author->avatar}}" class="img-fluid">
+                            </div>
+                        </div>
+
+                    </div>
+                    <!--/main slider carousel-->
+                </div>
+
+                <div class="col-md-6 slider-content">
+                    <div>
+                        ملیت :                     {{$author->nationality}}
+                    </div>
+                    <div>
+                        تاریخ تولد : {{$author->birthdate}}
+
+                    </div>
+
+                    <?php echo htmlspecialchars_decode(stripslashes($author->description));  ?>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    @if($books->count() > 0)
+        <section class="related-books">
+            <div class="container">
+                <h2>کتاب های نویسنده</h2>
+                <div class="recomended-sec">
+                    <div class="row">
+                        @foreach($books as $key=>$value)
+                            <div class="col-lg-3 col-md-6">
+                                <div class="item">
+                                    <img src="/images/books/{{$value->avatar}}" alt="img">
+                                    <h3>{{$value->title}}</h3>
+                                    <h6>
+                                        <span class="price">{{$value->author->name}} </span>
+                                    </h6>
+                                    <div class="hover">
+                                        <a href="{{Route('site.book' , $value->id)}}">
+                                            <span><i class="fa fa-long-arrow-right" aria-hidden="true"></i></span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
+
+
+                    </div>
+                </div>
+            </div>
+        </section>
+    @endif
+@endsection

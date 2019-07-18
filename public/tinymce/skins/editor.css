@@ -1,0 +1,58 @@
+/*
+body{font:8pt tahoma,arial,sans-serif;margin:0px 5px 0px 5px;;background:#ededed;color:#444444}
+
+input {font:8pt tahoma,arial,sans-serif}
+select {font:8pt tahoma,arial,sans-serif}
+textarea {font:8pt tahoma,arial,sans-serif}
+.inpSel {font:8pt tahoma,arial,sans-serif}
+.inpTxt {font:8pt tahoma,arial,sans-serif;} 
+.inpChk {margin-right:3px;margin-bottom:1px}
+.inpRdo {margin-right:3px;margin-bottom:1px}
+
+.inpBtn, .inpBtnOver, .inpBtnOut {
+    padding:4px 10px 4px 10px;
+    
+    margin-left:2px;
+    
+    font-size:11px;font-weight:bold;color:#000000;
+    background:url('img/button.png') #EEEEEE;
+    
+    border-top:1px solid #DDDDDD;
+    border-right:1px solid #AAAAAA;
+    border-bottom:1px solid #AAAAAA;
+    border-left:1px solid #DDDDDD;    
+    
+    cursor:pointer;
+}*/
+.dialogFooter{
+    padding-bottom:12px !important;
+    padding-right:10px !important;
+    background-color:#ededed;
+}
+
+td{font-size:8pt}
+.span_style {
+    line-height: 28px !important;
+    margin-top: 8px !important;
+}
+.span_style_popup {
+    line-height: 27px !important;
+
+}
+.input_style {
+    margin-bottom: 7px !important;
+}
+.input_style_m {
+    margin-bottom: 3px !important;
+}
+
+.wrapper {
+    display: block;
+    overflow: hidden;
+    height: 0px;
+}
+
+.tox-form .dir-align {
+    direction: ltr;
+    text-align: left;
+}

@@ -1,0 +1,33 @@
+.status_enable {
+    font-size: 22px;
+    text-align: center;
+    display: block;
+    color: #1c7430;
+}
+
+.status_disable {
+    font-size: 22px;
+    text-align: center;
+    display: block;
+    color: red;
+}
+
+.toolbar_search {
+    font-size: 12px;
+}
+
+.toolbar_search .form-control {
+    font-size: 13px;
+}
+
+.list-table{
+    font-size: 14px;
+}
+
+.table td, .table th {
+    text-align: center;
+}
+
+.btn-width {
+    width: 100%;
+}

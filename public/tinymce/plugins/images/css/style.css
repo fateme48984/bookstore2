@@ -1,0 +1,60 @@
+.border_dialog , .ui-dialog .ui-dialog-content {
+    background-color: #ededed;
+}
+
+.selected_class {
+    color : maroon;
+}
+
+.tox-form .tox-selectfield select {
+    width: 150px;
+    -webkit-appearance : menulist;
+}
+
+.combo_plugin {
+    background-color: #f0f0f0;
+    border: 1px solid #c5c5c5;
+    height: 24px;
+    width: 151px;
+
+}
+.border_btn {
+    background-color: #e3e3e3;
+    border: 1px solid #ccc;
+    color: #333;
+    cursor: pointer;
+    padding: 2px 4px;
+    text-align: center;
+}
+.mce-container1{
+    font-family: Tahoma ,"Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 12px;
+    text-shadow: none;
+    background: transparent;
+    border: 0;
+}
+.mce-container1 span{
+    font-family: Tahoma ,"Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 12px;
+    text-shadow: none;
+}
+.mce-container1 input{
+    font-family: Tahoma ,"Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 12px;
+    text-shadow: none;
+}
+
+.mce-container1 button {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box
+}
+
+#btnCancel , #btnInsert {
+    border: 0px;
+    background: transparent;
+}
+
+.input_style_im{
+    margin-bottom: 7px !important;
+}

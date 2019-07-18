@@ -1,0 +1,429 @@
+-- phpMyAdmin SQL Dump
+-- version 4.5.4.1deb2ubuntu2
+-- http://www.phpmyadmin.net
+--
+-- Host: localhost
+-- Generation Time: Jul 06, 2019 at 04:25 PM
+-- Server version: 5.6.35-1+deb.sury.org~xenial+0.1
+-- PHP Version: 7.0.31-1+ubuntu16.04.1+deb.sury.org+1
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
+
+--
+-- Database: `laracms`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `authors`
+--
+
+CREATE TABLE `authors` (
+  `author_id` int(11) UNSIGNED NOT NULL,
+  `fname` varchar(255) NOT NULL,
+  `lname` varchar(255) NOT NULL,
+  `nationality` varchar(255) NOT NULL,
+  `birthdate` date NOT NULL,
+  `description` text NOT NULL,
+  `create_date` date NOT NULL,
+  `update_date` date NOT NULL,
+  `create_by` bigint(20) UNSIGNED NOT NULL,
+  `aorder` int(11) UNSIGNED NOT NULL,
+  `status` char(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `books`
+--
+
+CREATE TABLE `books` (
+  `book_id` int(11) UNSIGNED NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `cat_id` int(11) UNSIGNED NOT NULL,
+  `author_id` int(11) UNSIGNED NOT NULL,
+  `translator_id` int(11) UNSIGNED NOT NULL,
+  `summary` varchar(255) NOT NULL,
+  `description` text NOT NULL,
+  `image` varchar(255) NOT NULL,
+  `status` char(1) NOT NULL,
+  `border` int(11) NOT NULL,
+  `create_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `update_date` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `create_by` bigint(20) UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `book_categories`
+--
+
+CREATE TABLE `book_categories` (
+  `cat_id` int(11) NOT NULL,
+  `cat_name` int(11) NOT NULL,
+  `create_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `update_date` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `create_by` bigint(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `migrations`
+--
+
+CREATE TABLE `migrations` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `migration` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `batch` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `migrations`
+--
+
+INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
+(1, '2014_10_12_000000_create_users_table', 1),
+(2, '2014_10_12_100000_create_password_resets_table', 1),
+(3, '2019_04_27_074654_create_permission_tables', 1),
+(4, '2019_04_27_111823_create_posts_table', 2);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `model_has_permissions`
+--
+
+CREATE TABLE `model_has_permissions` (
+  `permission_id` int(10) UNSIGNED NOT NULL,
+  `model_type` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `model_id` bigint(20) UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `model_has_roles`
+--
+
+CREATE TABLE `model_has_roles` (
+  `role_id` int(10) UNSIGNED NOT NULL,
+  `model_type` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `model_id` bigint(20) UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `model_has_roles`
+--
+
+INSERT INTO `model_has_roles` (`role_id`, `model_type`, `model_id`) VALUES
+(1, 'Modules\\User\\Entities\\User', 1),
+(2, 'Modules\\User\\Entities\\User', 3);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `password_resets`
+--
+
+CREATE TABLE `password_resets` (
+  `email` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `token` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `permissions`
+--
+
+CREATE TABLE `permissions` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `guard_name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `permissions`
+--
+
+INSERT INTO `permissions` (`id`, `name`, `guard_name`, `created_at`, `updated_at`) VALUES
+(1, 'Create Post', 'web', '2019-04-28 06:35:32', '2019-04-28 06:35:32'),
+(2, 'Edit Post', 'web', '2019-04-28 07:04:34', '2019-04-28 07:04:34'),
+(3, 'Delete Post', 'web', '2019-04-28 07:04:44', '2019-04-28 07:04:44'),
+(4, 'View Post', 'web', '2019-04-28 07:04:54', '2019-04-28 07:04:54'),
+(5, 'Administer roles & permissions', 'web', '2019-04-28 07:05:21', '2019-04-28 07:05:21');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `posts`
+--
+
+CREATE TABLE `posts` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `title` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `body` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `posts`
+--
+
+INSERT INTO `posts` (`id`, `title`, `body`, `created_at`, `updated_at`) VALUES
+(1, 'Compiling Assets', 'Here the Post class was imported from our model and the Auth class which was generated with the make:auth command earlier. These were imported so that you would be able to make Eloquent queries on the Post table and so as to be able to have access to authentication information of our users. In the constructor two middlewares were called, one is auth which restricts access to the PostController methods to authenticated users the other is a custom middleware is yet to be created. This would be responsible for our Permissions and Roles system. Next, index and show are passed into the except method to allow all users to be able to view posts.\r\n\r\nThe index() method lists all the available posts. It queries the post table for all posts and passes this information to the view. Paginate() allows us to limit the number of posts in a page, in this case five.\r\n\r\nThe create() method simply returns the posts/create view which would contain a form for creating new posts. The store() method saves the information input from the posts/create view. The information is first validated and after it is saved, a flash message is passed to the view', '2019-04-28 00:54:34', '2019-04-28 00:54:34'),
+(3, 'title', 'Create New Post Create New Post Create New Post Create New Post Create New PostCreate New Post Create New Post', '2019-06-23 02:54:23', '2019-06-23 02:54:23');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `roles`
+--
+
+CREATE TABLE `roles` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `guard_name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `roles`
+--
+
+INSERT INTO `roles` (`id`, `name`, `guard_name`, `created_at`, `updated_at`) VALUES
+(1, 'Admin', 'web', '2019-06-23 01:51:19', '2019-06-23 01:51:19'),
+(2, 'Author', 'web', '2019-06-23 01:51:41', '2019-06-23 01:51:41');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `role_has_permissions`
+--
+
+CREATE TABLE `role_has_permissions` (
+  `permission_id` int(10) UNSIGNED NOT NULL,
+  `role_id` int(10) UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `role_has_permissions`
+--
+
+INSERT INTO `role_has_permissions` (`permission_id`, `role_id`) VALUES
+(1, 1),
+(2, 1),
+(3, 1),
+(4, 1),
+(5, 1),
+(1, 2),
+(4, 2);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `translators`
+--
+
+CREATE TABLE `translators` (
+  `translator_id` int(11) UNSIGNED NOT NULL,
+  `fname` varchar(255) NOT NULL,
+  `lname` varchar(255) NOT NULL,
+  `description` text NOT NULL,
+  `create_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `update_date` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `create_by` bigint(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
+--
+
+CREATE TABLE `users` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email_verified_at` timestamp NULL DEFAULT NULL,
+  `password` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
+(1, 'fatemeh', 'fatemeyaghoobi1988@gmail.com', NULL, '$2y$10$Izd41mg8V0r/L.9DWvZKU.F7HfPG2.qZFFGzV6EAjSbPKSyIYJMx2', 'Q2UnpGEWtemgJLJXDRFhYbeBScMUwVJNXhSJRC2ISK5K4tB52zNku26IQyjN', '2019-04-27 05:42:29', '2019-06-23 01:52:52'),
+(3, 'Hamid', 'hamid@gmail.com', NULL, '$2y$10$FX/m6/.E9DcgOuJ5BthLue0JJxESijycOda7mY3otTKuwra/P17Gi', NULL, '2019-06-23 02:00:57', '2019-06-23 02:55:15');
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `authors`
+--
+ALTER TABLE `authors`
+  ADD PRIMARY KEY (`author_id`);
+
+--
+-- Indexes for table `books`
+--
+ALTER TABLE `books`
+  ADD PRIMARY KEY (`book_id`);
+
+--
+-- Indexes for table `book_categories`
+--
+ALTER TABLE `book_categories`
+  ADD PRIMARY KEY (`cat_id`);
+
+--
+-- Indexes for table `migrations`
+--
+ALTER TABLE `migrations`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `model_has_permissions`
+--
+ALTER TABLE `model_has_permissions`
+  ADD PRIMARY KEY (`permission_id`,`model_id`,`model_type`),
+  ADD KEY `model_has_permissions_model_id_model_type_index` (`model_id`,`model_type`);
+
+--
+-- Indexes for table `model_has_roles`
+--
+ALTER TABLE `model_has_roles`
+  ADD PRIMARY KEY (`role_id`,`model_id`,`model_type`),
+  ADD KEY `model_has_roles_model_id_model_type_index` (`model_id`,`model_type`);
+
+--
+-- Indexes for table `password_resets`
+--
+ALTER TABLE `password_resets`
+  ADD KEY `password_resets_email_index` (`email`);
+
+--
+-- Indexes for table `permissions`
+--
+ALTER TABLE `permissions`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `posts`
+--
+ALTER TABLE `posts`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `roles`
+--
+ALTER TABLE `roles`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `role_has_permissions`
+--
+ALTER TABLE `role_has_permissions`
+  ADD PRIMARY KEY (`permission_id`,`role_id`),
+  ADD KEY `role_has_permissions_role_id_foreign` (`role_id`);
+
+--
+-- Indexes for table `translators`
+--
+ALTER TABLE `translators`
+  ADD PRIMARY KEY (`translator_id`);
+
+--
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `users_email_unique` (`email`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `authors`
+--
+ALTER TABLE `authors`
+  MODIFY `author_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `books`
+--
+ALTER TABLE `books`
+  MODIFY `book_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `book_categories`
+--
+ALTER TABLE `book_categories`
+  MODIFY `cat_id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `migrations`
+--
+ALTER TABLE `migrations`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+--
+-- AUTO_INCREMENT for table `permissions`
+--
+ALTER TABLE `permissions`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+--
+-- AUTO_INCREMENT for table `posts`
+--
+ALTER TABLE `posts`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+--
+-- AUTO_INCREMENT for table `roles`
+--
+ALTER TABLE `roles`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT for table `translators`
+--
+ALTER TABLE `translators`
+  MODIFY `translator_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `model_has_permissions`
+--
+ALTER TABLE `model_has_permissions`
+  ADD CONSTRAINT `model_has_permissions_permission_id_foreign` FOREIGN KEY (`permission_id`) REFERENCES `permissions` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `model_has_roles`
+--
+ALTER TABLE `model_has_roles`
+  ADD CONSTRAINT `model_has_roles_role_id_foreign` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `role_has_permissions`
+--
+ALTER TABLE `role_has_permissions`
+  ADD CONSTRAINT `role_has_permissions_permission_id_foreign` FOREIGN KEY (`permission_id`) REFERENCES `permissions` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `role_has_permissions_role_id_foreign` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE CASCADE;
